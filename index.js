@@ -84,24 +84,26 @@ module.exports = (function(){
 	base = base || "";
 
 	absolute = path.resolve(file);
-	
-	file = absolute.substr(base.length+1,absolute.length);
 
+	file = path.basename(absolute);
+	
+	// ignore if accounted
+	if(this.struct[absolute]) return this;
+
+	// ignore if unmatched
 	if(this.match){
 
 	    if(!file.match(this.match)) return this;
 
 	}
 
+	// ignore if matched
 	if(this.ignore){
 
 	    if(file.match(this.ignore)) return this;
 
 	}
 	
-	// already visited, ignore
-	if(this.struct[absolute]) return this;
-
 	try {
 
 	    stat = fs.lstatSync(absolute);
