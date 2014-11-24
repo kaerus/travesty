@@ -5,7 +5,7 @@ module.exports = (function(){
     var fs = require('fs');
     var path = require('path');
     
-    var PSEP = process && process.plattform === 'windows' ? '\\' : '/';
+    var PSEP = process && process.platform === 'windows' ? '\\' : '/';
 
     // some useful file matchers
     var matchers = {
